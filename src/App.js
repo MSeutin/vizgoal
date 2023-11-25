@@ -1,18 +1,19 @@
 import "./App.css";
-import MuiNavbar from "./components/MuiNavbar";
-import MuiFabButton from "./components/MuiFabButton";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+import MuiNavbar from "./components/navigation/MuiNavbar";
+import GoalLists from "./components/progressBars/GoalLists";
+import { Container } from "@mui/material";
+import { ThemeProvider } from "@mui/material"; // Import ThemeProvider
+import { darkCoffeeTheme, tropicalBreezeTheme } from "./styles/theme";
+import MuiGoalModal from "./components/goalAdding/MuiGoalModal";
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={darkCoffeeTheme}>
       <MuiNavbar />
-      <MuiFabButton />
+      <Container maxWidth="l">
+        <MuiGoalModal />
+        <GoalLists />
+      </Container>
     </ThemeProvider>
   );
 }
