@@ -1,23 +1,29 @@
 [
   {
     "id": 1,
-    "goal": "Complete 10 tasks",
-    "startDate": "2022-01-01",
-    "endDate": "2022-01-10",
+    "goal": "goal example 1",
+    "startDate": "Jan 1, 2022",
+    "endDate": "Jan 11, 2022",
+    "numberOfDays": 10,
+    "color": "primary",
     "progress": 80
   },
   {
     "id": 2,
-    "goal": "Read 20 pages",
-    "startDate": "2022-01-01",
-    "endDate": "2022-01-20",
+    "goal": "goal example 2",
+    "startDate": "Aug 1, 2021",
+    "endDate": "Aug 6, 2021",
+    "numberOfDays": 5,
+    "color": "blue",
     "progress": 50
   },
   {
     "id": 3,
-    "goal": "Exercise for 30 minutes",
-    "startDate": "2022-01-01",
-    "endDate": "2022-01-30",
+    "goal": "goal example 3",
+    "startDate": "Mar 1, 2021",
+    "endDate": "Mar 30, 2021",
+    "numberOfDays": 30,
+    "color": "accent",
     "progress": 20
   }
 ]

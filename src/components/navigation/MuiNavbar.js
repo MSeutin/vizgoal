@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import panda from "../../assets/images/panda.svg";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -39,7 +40,17 @@ function MuiNavbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <img
+            src={panda}
+            alt="Panda Logo"
+            style={{
+              width: "40px", // Adjust the width to your desired size
+              height: "40px", // Adjust the height to your desired size
+              display: { xs: "none", md: "flex" },
+              marginRight: "1em",
+            }}
+          />
+
           <Typography
             variant="h6"
             noWrap
@@ -55,7 +66,7 @@ function MuiNavbar() {
               textDecoration: "none",
             }}
           >
-            VizGoal
+            PandaGoal
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -111,7 +122,7 @@ function MuiNavbar() {
               textDecoration: "none",
             }}
           >
-            VizGoal
+            PandaGoal
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

@@ -1,20 +1,35 @@
 import MuiGoalProgressBar from "./MuiGoalProgressBar";
-import placeholderGoals from "../../data/placeholderGoals.json";
-import userGoals from "../../data/userGoals.json";
 
-function GoalLists() {
-  const tempGoals = placeholderGoals;
+function GoalLists({ goals, handleGoalRemoval, goalExample }) {
   return (
     <div>
-      {tempGoals.map((goal) => (
-        <MuiGoalProgressBar
-          key={goal.id}
-          goal={goal.goal}
-          startDate={goal.startDate}
-          endDate={goal.endDate}
-          progress={goal.progress}
-        />
-      ))}
+      {goals.length > 0
+        ? goals.map((goal) => (
+            <MuiGoalProgressBar
+              key={goal.id}
+              id={goal.id}
+              goal={goal.goal}
+              startDate={goal.startDate}
+              endDate={goal.endDate}
+              color={goal.color}
+              progress={goal.progress}
+              numberOfDays={goal.numberOfDays}
+              handleGoalRemoval={handleGoalRemoval}
+            />
+          ))
+        : goalExample.map((goal) => (
+            <MuiGoalProgressBar
+              key={goal.id}
+              id={goal.id}
+              goal={goal.goal}
+              startDate={goal.startDate}
+              endDate={goal.endDate}
+              color={goal.color}
+              progress={goal.progress}
+              numberOfDays={goal.numberOfDays}
+              handleGoalRemoval={handleGoalRemoval}
+            />
+          ))}
     </div>
   );
 }

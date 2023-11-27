@@ -11,32 +11,74 @@ import {
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AddIcon from "@mui/icons-material/Add";
 import MuiDatePicker from "./MuiDatePicker";
-import MuiTextField from "./MuiTextField";
+import TextField from "@mui/material/TextField";
 import { v4 as uuidv4 } from "uuid";
+import dayjs from "dayjs";
 
-function MuiGoalModal() {
+function MuiGoalModal({ handleGoalAddition }) {
   // states
   const [open, setOpen] = useState(false);
-  const [goalData, setGoalData] = useState({
-    id: uuidv4(),
-    goal: "",
-    startDate: "",
-    endDate: "",
-    progress: 0,
-  });
+  const [goal, setGoal] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [numberOfDays, setNumberOfDays] = useState(0);
 
-  // other
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  // handleSubmit function
+  const handleSubmit = () => {
+    if (!goal || !startDate || !endDate) return;
+    const formattedStartDate = dayjs(startDate).format("MMM DD, YYYY");
+    const formattedEndDate = dayjs(endDate).format("MMM DD, YYYY");
+    console.log(`startDate: ${startDate}`);
+    console.log(`endDate: ${endDate}`);
+    const date1 = dayjs(startDate);
+    const date2 = dayjs(endDate);
+    const numberOfDays = date2.diff(date1, "day");
+    console.log(`number of days type: ${typeof numberOfDays}`);
+    setNumberOfDays(numberOfDays);
+    const newGoal = {
+      id: uuidv4(),
+      goal,
+      startDate: formattedStartDate,
+      endDate: formattedEndDate,
+      color: "primary",
+      numberOfDays,
+      progress: 0,
+    };
+    handleGoalAddition(newGoal);
+    setOpen(false);
+    setGoal("");
+    setStartDate(null);
+    setEndDate(null);
+  };
 
-  // handle click functions
+  // handleGoalChange function
+  const handleGoalChange = (event) => {
+    setGoal(event.target.value);
+  };
+
+  // handleStartDate function
+  const handleStartDate = (date) => {
+    setStartDate(date);
+  };
+
+  // handleEndDate function
+  const handleEndDate = (date) => {
+    setEndDate(date);
+  };
+
+  // handleClickOpen function
   const handleClickOpen = () => {
     setOpen(true);
   };
 
+  // handleClose function
   const handleClose = () => {
     setOpen(false);
   };
+
+  // other
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <>
@@ -81,14 +123,26 @@ function MuiGoalModal() {
               justifyContent: "start",
             }}
           >
-            {/* Text and DateFields */}
-            <MuiTextField />
-            <MuiDatePicker label="Start Date" />
-            <MuiDatePicker label="End Date" />
+            {/* Goal Name Input */}
+            <TextField
+              id="outlined-basic"
+              label="Goal"
+              variant="outlined"
+              value={goal}
+              onChange={handleGoalChange}
+            />
+            {/* Start Date Picker */}
+            <MuiDatePicker
+              label="Start Date"
+              handleDateChange={handleStartDate}
+            />
+            {/* End Date Picker */}
+            <MuiDatePicker label="End Date" handleDateChange={handleEndDate} />
           </Box>
         </DialogContent>
         <DialogActions>
           <Button
+            onClick={handleSubmit}
             type="submit"
             sx={{ background: "#3f51b5", color: "#fff" }}
             autoFocus

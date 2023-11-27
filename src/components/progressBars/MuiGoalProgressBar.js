@@ -6,19 +6,27 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { green, blue } from "@mui/material/colors";
+import { green, blue, red, grey } from "@mui/material/colors";
 import { darkCoffeeTheme } from "../../styles/theme";
 
-function MuiGoalProgressBar({ goal, endDate, progress }) {
-  const deleteGoal = () => {
-    console.log("delete goal");
-  };
+function MuiGoalProgressBar({
+  id,
+  goal,
+  startDate,
+  endDate,
+  numberOfDays,
+  progress,
+  handleGoalRemoval,
+  color,
+}) {
   const handleMoreOptionsClick = () => {
     console.log("handle more options click");
   };
+
   return (
     <Card sx={{ margin: 2 }}>
       <CardContent>
+        {/* Box for Goal, Start Date, End Date and Delete Button */}
         <Box
           sx={{
             display: "flex",
@@ -27,16 +35,49 @@ function MuiGoalProgressBar({ goal, endDate, progress }) {
             mb: 1,
           }}
         >
-          {/* GOAL TEXT  */}
-          <Typography
-            variant="body1"
+          {/* Box for Goal and Start Date */}
+          <Box
             sx={{
               display: "flex",
+              justifyContent: "space-between",
               alignItems: "center",
+              gap: 2,
             }}
           >
-            {goal}
-          </Typography>
+            {/* Goal  */}
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                letterSpacing: "0.05rem",
+                textTransform: "capitalize",
+                mr: 1,
+                color: "#A52A2A",
+              }}
+            >
+              {goal}
+            </Typography>
+            {/* Start Date */}
+            <Typography
+              variant="body2"
+              style={{ color: darkCoffeeTheme.palette.text.secondary }}
+            >
+              {startDate}
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "#303030",
+                ml: 4,
+              }}
+            >
+              {numberOfDays}{" "}
+              <span style={{ color: grey[500], fontSize: "1rem" }}>
+                days left
+              </span>
+            </Typography>
+          </Box>
           {/* BOX FOR BOTH END DATE AND DELETE BUTTON  */}
           <Box
             sx={{
@@ -50,7 +91,6 @@ function MuiGoalProgressBar({ goal, endDate, progress }) {
             <Typography
               variant="body2"
               style={{ color: darkCoffeeTheme.palette.text.secondary }}
-              sx={{ position: "relative" }}
             >
               {endDate}
             </Typography>
@@ -59,7 +99,7 @@ function MuiGoalProgressBar({ goal, endDate, progress }) {
               <MoreHorizIcon />
             </IconButton>
             {/* DELETE BUTTON ICON */}
-            <IconButton onClick={deleteGoal}>
+            <IconButton onClick={() => handleGoalRemoval(id)}>
               <CloseIcon
                 sx={{
                   color: blue[500],
@@ -82,10 +122,11 @@ function MuiGoalProgressBar({ goal, endDate, progress }) {
               progress
             )}%`}</Typography>
           </Box>
+          {/* Progress Bar  */}
           <LinearProgress
             variant="determinate"
             value={progress}
-            color="accent"
+            color={color}
             style={{ width: "100%", padding: "10px", height: 8 }}
           />
         </Box>
