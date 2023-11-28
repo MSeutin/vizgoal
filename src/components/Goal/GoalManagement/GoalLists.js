@@ -1,11 +1,11 @@
-import MuiGoalProgressBar from "./MuiGoalProgressBar";
+import GoalProgressBar from "./GoalProgressBar";
 
 function GoalLists({ goals, handleGoalRemoval, goalExample }) {
   return (
     <div>
       {goals.length > 0
         ? goals.map((goal) => (
-            <MuiGoalProgressBar
+            <GoalProgressBar
               key={goal.id}
               id={goal.id}
               goal={goal.goal}
@@ -18,7 +18,7 @@ function GoalLists({ goals, handleGoalRemoval, goalExample }) {
             />
           ))
         : goalExample.map((goal) => (
-            <MuiGoalProgressBar
+            <GoalProgressBar
               key={goal.id}
               id={goal.id}
               goal={goal.goal}

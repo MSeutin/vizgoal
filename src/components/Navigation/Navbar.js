@@ -14,10 +14,10 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import panda from "../../assets/images/panda.svg";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Guide", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function MuiNavbar() {
+function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -170,4 +170,4 @@ function MuiNavbar() {
     </AppBar>
   );
 }
-export default MuiNavbar;
+export default Navbar;

@@ -1,13 +1,13 @@
 import "./App.css";
 import { useState } from "react";
-import MuiNavbar from "./components/navigation/MuiNavbar";
-import GoalLists from "./components/progressBars/GoalLists";
+import { Navbar } from "./components/Navigation";
+import { GoalLists } from "./components/Goal/GoalManagement";
 import { Container } from "@mui/material";
 import { ThemeProvider } from "@mui/material"; // Import ThemeProvider
-import { darkCoffeeTheme, tropicalBreezeTheme } from "./styles/theme";
-import MuiGoalModal from "./components/goalAdding/MuiGoalModal";
+import { darkCoffeeTheme } from "./styles/theme";
+import { GoalModal } from "./components/Goal/Adding/";
+import { Footer } from "./components/Footer";
 import placeholderGoals from "./data/placeholderGoals.json";
-import userGoals from "./data/userGoals.json";
 
 function App() {
   const [goalExample, setGoalExample] = useState(placeholderGoals);
@@ -23,15 +23,16 @@ function App() {
 
   return (
     <ThemeProvider theme={darkCoffeeTheme}>
-      <MuiNavbar />
+      <Navbar />
       <Container maxWidth="l">
-        <MuiGoalModal handleGoalAddition={handleGoalAddition} />
+        <GoalModal handleGoalAddition={handleGoalAddition} />
         <GoalLists
           goals={goals}
           handleGoalRemoval={handleGoalRemoval}
           goalExample={goalExample}
         />
       </Container>
+      <Footer />
     </ThemeProvider>
   );
 }

@@ -5,13 +5,12 @@ import {
   DialogContent,
   DialogTitle,
   Box,
-  Button,
   useTheme,
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AddIcon from "@mui/icons-material/Add";
-import MuiDatePicker from "./MuiDatePicker";
-import TextField from "@mui/material/TextField";
+import MuiDatePicker from "./DatePicker";
+import { Input, Button } from "../../Shared";
 import { v4 as uuidv4 } from "uuid";
 import dayjs from "dayjs";
 
@@ -95,13 +94,6 @@ function MuiGoalModal({ handleGoalAddition }) {
           color="blue"
           aria-label="add"
           disableFocusRipple
-          sx={{
-            color: "#3f51b5",
-            ":hover": {
-              color: "#f2f2f2",
-              backgroundColor: "#3f51b5",
-            },
-          }}
         >
           <AddIcon />
         </Button>
@@ -124,13 +116,7 @@ function MuiGoalModal({ handleGoalAddition }) {
             }}
           >
             {/* Goal Name Input */}
-            <TextField
-              id="outlined-basic"
-              label="Goal"
-              variant="outlined"
-              value={goal}
-              onChange={handleGoalChange}
-            />
+            <Input value={goal} onChange={handleGoalChange} />
             {/* Start Date Picker */}
             <MuiDatePicker
               label="Start Date"
@@ -141,12 +127,7 @@ function MuiGoalModal({ handleGoalAddition }) {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button
-            onClick={handleSubmit}
-            type="submit"
-            sx={{ background: "#3f51b5", color: "#fff" }}
-            autoFocus
-          >
+          <Button onClick={handleSubmit} type="submit" autoFocus>
             Submit Goal
           </Button>
         </DialogActions>
